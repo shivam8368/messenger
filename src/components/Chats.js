@@ -8,18 +8,19 @@ import { useAuth } from "../contexts/AuthContext"
 
 import { auth } from "../firebase"
 
-export default function Chats() {
+
+const Chats = () => {
   const didMountRef = useRef(false)
   const [ loading, setLoading ] = useState(true)
   const { user } = useAuth()
   const history = useHistory()
 
-  async function handleLogout() {
+const handleLogout = async() => {
     await auth.signOut()
     history.push("/")
   }
 
-  async function getFile(url) {
+ const getFile = async(url) => {
     let response = await fetch(url);
     let data = await response.blob();
     return new File([data], "test.jpg", { type: 'image/jpeg' });
@@ -94,3 +95,7 @@ export default function Chats() {
     </div>
   )
 }
+
+
+
+export default Chats;
